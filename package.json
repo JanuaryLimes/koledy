@@ -13,7 +13,8 @@
     "react-native": "0.58.1",
     "react-native-gesture-handler": "^1.0.15",
     "react-navigation": "^3.0.9",
-    "react-timer-mixin": "^0.13.4"
+    "react-timer-mixin": "^0.13.4",
+    "remove-accents": "^0.4.2"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",
