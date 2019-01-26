@@ -7,9 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@babel/runtime": "^7.3.1",
     "native-base": "^2.10.0",
     "react": "16.6.3",
-    "react-native": "0.58.1"
+    "react-native": "0.58.1",
+    "react-native-gesture-handler": "^1.0.15",
+    "react-navigation": "^3.0.9",
+    "react-timer-mixin": "^0.13.4"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",
