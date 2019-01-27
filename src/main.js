@@ -25,7 +25,7 @@ export default class Main extends Component {
             .sort(this.alphabeticalSorting)}
           renderItem={({ item }) => (
             <ListItem onPress={() => this.onListItemPress(item)}>
-              <Text>{item.key}</Text>
+              <Text style={{ fontSize: 20 }}>{item.key}</Text>
             </ListItem>
           )}
         />
@@ -34,7 +34,7 @@ export default class Main extends Component {
   }
 
   onListItemPress(item) {
-    const el = this.state.tablicaKoled.find(x => (x.nazwa = item.key));
+    const el = this.state.tablicaKoled.find(x => x.nazwa === item.key);
     this.props.navigation.navigate('Details', {
       carol: el
     });
