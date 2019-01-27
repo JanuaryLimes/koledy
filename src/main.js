@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Button, FlatList } from 'react-native';
-import teksty from '../assets/teksty.json';
 import { ListItem } from 'native-base';
 import accents from 'remove-accents';
+import teksty from '../assets/teksty.json';
 
 export default class Main extends Component {
   constructor(props) {
