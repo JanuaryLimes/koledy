@@ -8,9 +8,9 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
 
-    const tablicaKoled = teksty['koledy']['koleda'];
+    const carolList = teksty['koledy']['koleda'];
     this.state = {
-      tablicaKoled: tablicaKoled,
+      carolList: carolList,
       search: '',
       searchBarVisible: false
     };
@@ -40,7 +40,11 @@ export default class Main extends Component {
       this.clearSearch();
     }
 
-    this.setState({ searchBarVisible: !this.state.searchBarVisible });
+    this.setState({ searchBarVisible: !this.state.searchBarVisible }, () => {
+      if (this.state.searchBarVisible) {
+        this.textInput._root.focus();
+      }
+    });
   };
 
   render() {
@@ -50,6 +54,7 @@ export default class Main extends Component {
           <View searchBar rounded style={{ paddingLeft: 15 }}>
             <Item>
               <Input
+                ref={input => (this.textInput = input)}
                 placeholder="Szukaj"
                 onChangeText={this.updateSearch}
                 value={this.state.search}
@@ -63,7 +68,7 @@ export default class Main extends Component {
           </View>
         )}
         <FlatList
-          data={this.state.tablicaKoled
+          data={this.state.carolList
             .filter(this.filterSearch)
             .map(this.addKey)
             .sort(this.alphabeticalSorting)}
@@ -81,9 +86,9 @@ export default class Main extends Component {
     if (!this.state.search) {
       return true;
     } else {
-      let sn = accents.remove(this.state.search.toLowerCase());
-      let cn = accents.remove(carol.nazwa.toLowerCase());
-      return cn.includes(sn);
+      let searchText = accents.remove(this.state.search.toLowerCase());
+      let carolName = accents.remove(carol.nazwa.toLowerCase());
+      return carolName.includes(searchText);
     }
   };
 
@@ -96,24 +101,24 @@ export default class Main extends Component {
   };
 
   onListItemPress(item) {
-    const el = this.state.tablicaKoled.find(x => x.nazwa === item.key);
+    const pressedElement = this.state.carolList.find(x => x.nazwa === item.key);
     this.props.navigation.navigate('Details', {
-      carol: el
+      carol: pressedElement
     });
   }
 
-  addKey(x) {
-    return { key: x.nazwa };
+  addKey(carol) {
+    return { key: carol.nazwa };
   }
 
   alphabeticalSorting(a, b) {
     // to niestety nie zalatwia sprawy sortowania s i ś
-    const aLow = accents.remove(a.key.toLowerCase());
-    const bLow = accents.remove(b.key.toLowerCase());
-    if (aLow > bLow) {
+    const aLowered = accents.remove(a.key.toLowerCase());
+    const bLowered = accents.remove(b.key.toLowerCase());
+    if (aLowered > bLowered) {
       return 1;
     }
-    if (aLow < bLow) {
+    if (aLowered < bLowered) {
       return -1;
     }
     return 0;
