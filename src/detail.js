@@ -37,9 +37,7 @@ export default class Detail extends Component {
     this.props.navigation.setParams({
       settings: this.settingsHandler
     });
-  }
 
-  componentWillMount() {
     this.getStoredTextSize()
       .then(storedTextSize => {
         this.setState({ textSize: storedTextSize });
