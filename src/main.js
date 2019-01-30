@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StatusBar } from 'react-native';
 import { ListItem, Item, Icon, Input, Button } from 'native-base';
 import accents from 'remove-accents';
 import teksty from '../assets/teksty.json';
@@ -50,6 +50,7 @@ export default class Main extends Component {
   render() {
     return (
       <View>
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
         {this.state.searchBarVisible && (
           <View searchBar rounded style={{ paddingLeft: 15 }}>
             <Item>
